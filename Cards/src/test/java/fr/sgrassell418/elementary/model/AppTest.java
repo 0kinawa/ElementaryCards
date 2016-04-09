@@ -1,4 +1,4 @@
-package fr.sgrassell418.elementary.cards;
+package fr.sgrassell418.elementary.model;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

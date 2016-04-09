@@ -1,4 +1,4 @@
-package fr.sgrassell418.elementary.cards;
+package fr.sgrassell418.elementary.model.type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,14 +13,14 @@ import java.util.List;
 /**
  * Created by stephane on 08/04/16.
  */
-public class Type {
+public class Type implements IType{
+
+    @JsonIgnore
+    public static List<Type> allTypes = new ArrayList<Type>();
 
     private int id;
     private String name;
     private int[] weaknesses;
-
-    @JsonIgnore
-    public static List<Type> allTypes = new ArrayList<Type>();
 
     public int getId() {
         return id;

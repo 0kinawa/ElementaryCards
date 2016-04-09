@@ -1,4 +1,4 @@
-package fr.sgrassell418.elementary.cards;
+package fr.sgrassell418.elementary.model;
 
 /**
  * Created by stephane on 09/04/16.

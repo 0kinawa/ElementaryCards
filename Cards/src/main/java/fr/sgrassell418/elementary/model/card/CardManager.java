@@ -1,4 +1,7 @@
-package fr.sgrassell418.elementary.cards;
+package fr.sgrassell418.elementary.model.card;
+
+import fr.sgrassell418.elementary.model.GenericBuilder;
+import fr.sgrassell418.elementary.model.type.Type;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +10,18 @@ import java.util.List;
  * Created by stephane on 08/04/16.
  */
 public class CardManager {
-    public static List<Card> generateAll(){
+
+    private static CardManager INSTANCE = null;
+
+    private CardManager(){};
+
+    public static CardManager getINSTANCE(){
+        if(INSTANCE == null)
+            INSTANCE = new CardManager();
+        return INSTANCE;
+    }
+
+    public List<Card> generateAll(){
         List<Card> allCards = new ArrayList<Card>();
 
         for (Type t : Type.allTypes){ //Pour chaque type possible (8 itérations)
@@ -64,6 +78,26 @@ public class CardManager {
         }
         return allCards;
     }
+
+    public Card cardFromId(String id){
+        char[] values = id.toCharArray();
+        int[] weaks = {Character.getNumericValue(values[1]), Character.getNumericValue(values[2]),
+                Character.getNumericValue(values[3]), Character.getNumericValue(values[4])};
+
+        System.out.println((int)values[0]);
+
+        Card c = new GenericBuilder<Card>(Card.class).with("id", id)
+                .with("type", Type.allTypes.get(Character.getNumericValue(values[0])))
+                .with("weaknesses", weaks).build();
+        c.setRarity(calculateRarity(c));
+
+        return c;
+    }
+
+
+
+
+
 
     private static char calculateRarity(Card c){// CALCUL DE RARETÉ SELON CRITÈRES EMPIRIQUES
         int interest = 0; // Common < 10 Unco < 20 Rare

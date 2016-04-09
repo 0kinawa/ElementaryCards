@@ -1,20 +1,20 @@
-package fr.sgrassell418.elementary.cards;
+package fr.sgrassell418.elementary.model.card;
 
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import fr.sgrassell418.elementary.model.type.Type;
 
 /**
  * Created by stephane on 08/04/16.
  */
-public class Card {
+public class Card implements ICard {
+
     private String id;
-
     private Type type;
-
+    private int[] weaknesses;
     private char rarity;
 
-    private int[] weaknesses;
 
     public String getId() {
         return id;
@@ -29,8 +29,14 @@ public class Card {
         return type;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setType(Type type) { this.type = type; }
+
+    public int[] getWeaknesses() {
+        return weaknesses;
+    }
+
+    public void setWeaknesses(int[] weaknesses) {
+        this.weaknesses = weaknesses;
     }
 
     public char getRarity() {
@@ -39,14 +45,6 @@ public class Card {
 
     public void setRarity(char rarity) {
         this.rarity = rarity;
-    }
-
-    public int[] getWeaknesses() {
-        return weaknesses;
-    }
-
-    public void setWeaknesses(int[] weaknesses) {
-        this.weaknesses = weaknesses;
     }
 
     @Override
