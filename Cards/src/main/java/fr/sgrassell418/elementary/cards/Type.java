@@ -1,7 +1,6 @@
 package fr.sgrassell418.elementary.cards;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,21 +14,13 @@ import java.util.List;
  * Created by stephane on 08/04/16.
  */
 public class Type {
+
     private int id;
     private String name;
-
     private int[] weaknesses;
 
     @JsonIgnore
     public static List<Type> allTypes = new ArrayList<Type>();
-
-    public Type(int id, String name, int[] weaknesses) {
-        this.id = id;
-        this.name = name;
-        this.weaknesses = weaknesses;
-    }
-
-    public Type(){};
 
     public int getId() {
         return id;

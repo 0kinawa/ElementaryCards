@@ -18,7 +18,7 @@ public class App
         for(Type t : Type.allTypes){
             List<Card> typeCards = new ArrayList<>();
             for(Card c : allCards){
-                if(c.type == t.getId())
+                if(c.getType().getId() == t.getId())
                     typeCards.add(c);
             }
             try {

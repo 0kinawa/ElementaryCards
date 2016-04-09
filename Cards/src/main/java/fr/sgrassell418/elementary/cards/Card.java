@@ -1,7 +1,8 @@
 package fr.sgrassell418.elementary.cards;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * Created by stephane on 08/04/16.
@@ -9,24 +10,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Card {
     private String id;
 
-    @JsonIgnore
-    private Type cType;
-
-    public int type;
+    private Type type;
 
     private char rarity;
 
     private int[] weaknesses;
-
-    public Card(){};
-
-    public Card(String id, Type cType, char rarity, int[] weaknesses) {
-        this.id = id;
-        this.cType = cType;
-        this.type = this.cType.getId();
-        this.rarity = rarity;
-        this.weaknesses = weaknesses;
-    }
 
     public String getId() {
         return id;
@@ -36,13 +24,13 @@ public class Card {
         this.id = id;
     }
 
-    public Type getCType() {
-        return cType;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    public Type getType() {
+        return type;
     }
 
-    public void setCType(Type cType) {
-        this.cType = cType;
-        this.type = this.cType.getId();
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public char getRarity() {
@@ -63,7 +51,7 @@ public class Card {
 
     @Override
     public String toString() {
-        String sCard = "Card #"+id+" ; Type "+ cType.getName().toLowerCase()+" ; weaknesses : ";
+        String sCard = "Card #"+id+" ; Type "+ type.getName().toLowerCase()+" ; weaknesses : ";
         for(Integer w : weaknesses){
             if(w != 8)
                 sCard += Type.allTypes.get(w).getName()+"/";

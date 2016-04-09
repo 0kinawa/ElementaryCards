@@ -20,11 +20,11 @@ public class CardManager {
 
                             Card c = new Card(); // Création d'une carte
 
-                            c.setCType(t); // On lui met le type en cours (première boucle for)
+                            c.setType(t); // On lui met le type en cours (première boucle for)
                             int[] weaks = {w, x, y, z}; // Création du tableau des 4 faiblesses en fonction des 4 boucles for O/N/E/S
                             c.setWeaknesses(weaks); // On attribue le tableau des faiblesses à la carte
                             c.setRarity(calculateRarity(c)); // On envoie le calcul de rareté dans la carte
-                            c.setId(""+c.getCType().getId()+c.getWeaknesses()[0]+c.getWeaknesses()[1]+c.getWeaknesses()[2]+c.getWeaknesses()[3]); // Id = idtype + les 4 faiblesses
+                            c.setId(""+c.getType().getId()+c.getWeaknesses()[0]+c.getWeaknesses()[1]+c.getWeaknesses()[2]+c.getWeaknesses()[3]); // Id = idtype + les 4 faiblesses
                             allCards.add(c); // On ajoute la carte à la liste du return
                         }
                     }
@@ -40,7 +40,7 @@ public class CardManager {
                     for(Integer x : t.getWeaknesses()){ // Faiblesse 2
                         for(Integer y : t.getWeaknesses()){ // Faiblesse 3
                             Card c = new Card();
-                            c.setCType(t);
+                            c.setType(t);
                             if(i==0){ // A la première itération, on passe SUD en neutre
                                 int[] weaks = {w, x, y, 8};
                                 c.setWeaknesses(weaks);
@@ -55,7 +55,7 @@ public class CardManager {
                                 c.setWeaknesses(weaks);
                             }
                             c.setRarity(calculateRarity(c));
-                            c.setId(""+c.getCType().getId()+c.getWeaknesses()[0]+c.getWeaknesses()[1]+c.getWeaknesses()[2]+c.getWeaknesses()[3]);
+                            c.setId(""+c.getType().getId()+c.getWeaknesses()[0]+c.getWeaknesses()[1]+c.getWeaknesses()[2]+c.getWeaknesses()[3]);
                             allCards.add(c);
                         }
                     }
@@ -95,7 +95,7 @@ public class CardManager {
                 interest -= 2;
         }
 
-        if(c.type == 0 || c.type == 2) //Si type feu ou glace (seuls types avec + de forces que de faiblesses)
+        if(c.getType().getId() == 0 || c.getType().getId() == 2) //Si type feu ou glace (seuls types avec + de forces que de faiblesses)
             interest += 2;
 
         if (count>4)//Motif intéressant
